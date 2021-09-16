@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel= "stylesheet" href = "consultar.css">
-  	<link rel= "stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-	<link rel= "shortcut icon" href="favicon.ico" type="image/x-icon">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel= "stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel= "stylesheet" href="css/consultar.css">
 	<title>Urna.com</title>
 </head>
 <body>
+
+	<!--Cabeçalho - Menu (Login e Cadastro)-->
+
 	<header>
-
-<!--Cabeçalho - Menu (Login e Cadastro)-->
-
-    	<nav>
-        	<ul class="menu">
-            	<li class="logo"><img src="imagens/urnaa.png" alt=""></li>
-            	<li class="item"><a href="index.php">INICIO</a></li>
-            	<li class="item"><a href="intro.php">VOTAR</a></li>
-        	</ul>
-    	</nav>
+		<nav>
+			<ul class="menu">
+				<li class="logo"><img src="imagens/urnaa.png" alt=""></li>
+				<li class="item"><a href="index.php">INICIO</a></li>
+				<li class="item"><a href="intro.php">VOTAR</a></li>
+			</ul>
+		</nav>
 	</header>
 
-<section>
-	
-<h1>
-    <?php
-include_once "conexao.php";
+	<section>
+		<h1>
+		<?php
+			include_once "conexao.php";
 
-//consultar no banco de dados
-$result_produto = "SELECT * FROM eleicao ORDER BY id DESC";       //ele seleciona a tabela do banco de dados
-$resultado_produto = mysqli_query($conn, $result_produto);         //ele consulta a conexao com o bd
+			//consultar no banco de dados
 
-//Verificar se encontrou resultado na tabela "eleicao"
+			$result_produto = "SELECT * FROM eleicao ORDER BY id DESC";       //ele seleciona a tabela do banco de dados
+			$resultado_produto = mysqli_query($conn, $result_produto);         //ele consulta a conexao com o bd
 
-if(($resultado_produto) AND ($resultado_produto->num_rows != 0)){
-	while($row_produto = mysqli_fetch_assoc($resultado_produto)){  //cria um laco de repeticao para consultar no banco de dados
-		echo $row_produto['nome'] . " = ";                        //puxa e exibe o campo nome no bd
-        echo $row_produto['qnt_voto'] . "<br>";                  //puxa e exibe o campo qnt voto no bd
-	}
-}else{
-	echo "Nenhum candidato encontrado";
-}
-?>
-</div>
-</section>
+			//Verificar se encontrou resultado na tabela "eleicao"
+
+			if(($resultado_produto) AND ($resultado_produto->num_rows != 0)){
+				while($row_produto = mysqli_fetch_assoc($resultado_produto)){  //cria um laco de repeticao para consultar no banco de dados
+					echo $row_produto['nome'] . " = ";                        //puxa e exibe o campo nome no bd
+					echo $row_produto['qnt_voto'] . "<br>";                  //puxa e exibe o campo qnt voto no bd
+				}
+			}
+			else{
+			echo "Nenhum candidato encontrado";
+			}
+		?>
+	</section>
 
 
 
